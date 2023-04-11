@@ -1,31 +1,31 @@
 import { atom } from "recoil";
 
-export const stateGender = atom({
-	key: "stateGender",
+export const stateGender = atom<string | undefined>({
+  key: "stateGender",
 
-	default: {},
+  default: "",
 });
 
-export const stateTarget = atom({
-	key: "stateTarget",
+export const stateTarget = atom<string | undefined>({
+  key: "stateTarget",
 
-	default: {},
+  default: "",
 });
 
 export const stateCategory = atom<string | undefined>({
-	key: "stateCategory",
+  key: "stateCategory",
 
-	default: "",
+  default: "",
 });
 
 export const stateBrand = atom<string | undefined>({
-	key: "stateBrand",
+  key: "stateBrand",
 
-	default: "",
+  default: "",
 });
 
 export const stateFree = atom<string | undefined>({
-	key: "stateFree",
+  key: "stateFree",
 
-	default: "",
+  default: "",
 });
