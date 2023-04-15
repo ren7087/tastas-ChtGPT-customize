@@ -4,13 +4,12 @@ import { stateDnd } from "../../../../../../../state/recoil/stateDnd";
 import { useRecoilState, useRecoilValue } from "recoil";
 import DndFormList from "./dndFormList";
 import { stateFree } from "../../../../../../../state/recoil/stateForm";
-import React from "react";
 
 type Prop = {
   dndArea: string;
 };
 
-const DndFormArea = React.memo((prop: Prop) => {
+const DndFormArea = (prop: Prop) => {
   const { dndArea } = prop;
   const items = useRecoilValue(stateDnd);
   const index = items.findIndex((item) => item.dndArea === dndArea);
@@ -48,8 +47,6 @@ const DndFormArea = React.memo((prop: Prop) => {
       </section>
     </SortableContext>
   );
-});
-
-DndFormArea.displayName = "DndFormArea";
+};
 
 export default DndFormArea;
