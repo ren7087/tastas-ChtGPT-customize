@@ -4,7 +4,13 @@ import { useMyDndContext } from "../../../features/hooks/useMyDndContext";
 import DndFormArea from "./form/dndFormArea";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { stateFree } from "../../../../../../state/recoil/stateForm";
+import {
+  stateBrand,
+  stateCategory,
+  stateFree,
+  stateGender,
+  stateTarget,
+} from "../../../../../../state/recoil/stateForm";
 import Modal from "../../modal";
 import { useState } from "react";
 import Loading from "../../loading";
@@ -12,6 +18,10 @@ import Loading from "../../loading";
 const DndWrapper = () => {
   const { dndContextProps } = useMyDndContext();
   const [free, setFree] = useRecoilState(stateFree);
+  const [gender, setGender] = useRecoilState(stateGender);
+  const [target, setTarget] = useRecoilState(stateTarget);
+  const [brand, setBrand] = useRecoilState(stateBrand);
+  const [category, setCategory] = useRecoilState(stateCategory);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [responseText, setResponseText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +30,7 @@ const DndWrapper = () => {
     setIsModalOpen(false);
   };
 
-  const prompt = free;
+  const prompt = free + gender + target + brand + category;
 
   const callAI = async () => {
     await axios({

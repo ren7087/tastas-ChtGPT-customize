@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const stateGender = atom<string | undefined>({
+export const stateGender = atom<string>({
   key: "stateGender",
 
   default: "",
@@ -12,19 +12,19 @@ export const stateTarget = atom<string[]>({
   default: [],
 });
 
-export const stateCategory = atom<string | undefined>({
+export const stateCategory = atom<string>({
   key: "stateCategory",
 
   default: "",
 });
 
-export const stateBrand = atom<string | undefined>({
+export const stateBrand = atom<string>({
   key: "stateBrand",
 
   default: "",
 });
 
-export const stateFree = atom<string | undefined>({
+export const stateFree = atom<string>({
   key: "stateFree",
 
   default: "",
