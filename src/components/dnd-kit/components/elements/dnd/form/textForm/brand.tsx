@@ -10,8 +10,6 @@ type Prop = {
 const Brand = (props: Prop) => {
   const { card } = props;
 
-  const { sortableProp } = useMySortable(card.uuid);
-
   const [brand, setBrand] = useRecoilState(stateBrand);
   const handleBrandChange = (event: any) => {
     setBrand(event.target.value);

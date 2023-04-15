@@ -6,10 +6,10 @@ export const stateGender = atom<string | undefined>({
   default: "",
 });
 
-export const stateTarget = atom<string | undefined>({
+export const stateTarget = atom<string[]>({
   key: "stateTarget",
 
-  default: "",
+  default: [],
 });
 
 export const stateCategory = atom<string | undefined>({

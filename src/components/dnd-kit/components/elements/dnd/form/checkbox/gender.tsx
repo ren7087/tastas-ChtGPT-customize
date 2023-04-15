@@ -10,8 +10,6 @@ type Prop = {
 const Gender = (props: Prop) => {
   const { card } = props;
 
-  const { sortableProp } = useMySortable(card.uuid);
-
   const [gender, setGender] = useRecoilState(stateGender);
 
   const handleGenderChange = (event: any) => {
@@ -22,29 +20,29 @@ const Gender = (props: Prop) => {
       <li className="mb-6 flex">
         <div className="flex items-center">
           <input
-            type="checkbox"
-            name="男性"
+            type="radio"
+            id="male"
+            name="gender"
+            value="男性"
             className="w-4 h-4 rounded"
+            checked={gender === "男性"}
             onChange={handleGenderChange}
           />
-          <label
-            htmlFor="default-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
+          <label htmlFor="male" className="mx-2 text-sm font-medium">
             男性
           </label>
         </div>
         <div className="flex items-center">
           <input
-            type="checkbox"
-            name="女性"
+            type="radio"
+            id="female"
+            name="gender"
+            value="女性"
             className="w-4 h-4 rounded"
+            checked={gender === "女性"}
             onChange={handleGenderChange}
           />
-          <label
-            htmlFor="checked-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
+          <label htmlFor="female" className="mx-2 text-sm font-medium">
             女性
           </label>
         </div>

@@ -10,8 +10,6 @@ type Prop = {
 const Category = (props: Prop) => {
   const { card } = props;
 
-  const { sortableProp } = useMySortable(card.uuid);
-
   const [category, setCategory] = useRecoilState(stateCategory);
   const handleCategoryChange = (event: any) => {
     setCategory(event.target.value);
