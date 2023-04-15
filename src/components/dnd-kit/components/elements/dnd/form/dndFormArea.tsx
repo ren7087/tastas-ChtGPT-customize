@@ -4,6 +4,10 @@ import { stateDnd } from "../../../../../../../state/recoil/stateDnd";
 import { useRecoilState, useRecoilValue } from "recoil";
 import DndFormList from "./dndFormList";
 import { stateFree } from "../../../../../../../state/recoil/stateForm";
+import Gender from "./checkbox/gender";
+import Target from "./checkbox/target";
+import Category from "./textForm/category";
+import Brand from "./textForm/brand";
 
 type Prop = {
   dndArea: string;
@@ -26,9 +30,19 @@ const DndFormArea = (prop: Prop) => {
         <h2 className="text-2xl font-bold text-center">{dndArea}</h2>
 
         <ul className="flex-col-center gap-[2rem] mt-[2rem]">
-          {items[index].dndCard.map((card) => (
-            <DndFormList key={card.uuid} card={card} />
-          ))}
+          {items[index].dndCard.map((card) =>
+            card.name == "性別" ? (
+              <Gender key={card.uuid} card={card} />
+            ) : card.name == "ターゲット層" ? (
+              <Target key={card.uuid} card={card} />
+            ) : card.name == "カテゴリー" ? (
+              <Category key={card.uuid} card={card} />
+            ) : card.name == "ブランド" ? (
+              <Brand key={card.uuid} card={card} />
+            ) : card.name == "自由記載欄" ? (
+              <DndFormList key={card.uuid} card={card} />
+            ) : null
+          )}
           <li className="mb-6">
             <label
               htmlFor="large-input"
