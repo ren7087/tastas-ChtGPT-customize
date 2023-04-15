@@ -12,43 +12,24 @@ const DndWrapper = () => {
   const { dndContextProps } = useMyDndContext();
   const [free, setFree] = useRecoilState(stateFree);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [res, setRes] = useState("");
+  const [responseText, setResponseText] = useState("");
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const whoAreYou = "You are an excellent Writer.";
-  const outPutStyle =
-    "The output should be a markdown code snippet formatted in the following schema in Japanese";
-
-  const outPutFormat = `
-		{
-			"本文": string,
-			"おすすめポイント": string
-		}
-		`;
-
-  const note = `NOTES:
-	* Please Create a passage within 200 characters.
-	* Please make the text as appealing as possible for selling on a flea market app.
-	* as detailed as possible
-	* Please do not include anything other than JSON in your answer.
-	* Response must be Japanese`;
+  const prompt = free;
 
   const callAI = async () => {
-    const res = await axios.get(
-      "/api/chatgpt?chat=" +
-        whoAreYou +
-        outPutStyle +
-        outPutFormat +
-        note +
-        free
-    );
-    const data = await res.data;
-    console.log(data);
-    console.log(data.chat);
-    setRes(data.chat);
+    await axios({
+      url: "/api/praise",
+      method: "POST",
+      data: { prompt },
+      onDownloadProgress: (progressEvent: any) => {
+        const dataChunk = progressEvent.event.target.response;
+        setResponseText(dataChunk);
+      },
+    }).catch(() => {});
     setIsModalOpen(true);
   };
 
@@ -71,7 +52,7 @@ const DndWrapper = () => {
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-2xl font-bold mb-4">結果</h2>
-          <p>{res}</p>
+          <p>{responseText}</p>
         </Modal>
       </DndContext>
     </>
