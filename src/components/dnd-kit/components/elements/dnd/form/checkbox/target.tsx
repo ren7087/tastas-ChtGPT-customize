@@ -26,22 +26,27 @@ const Target = (props: Prop) => {
   };
 
   return (
-    <li className="mb-6 flex">
-      {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
-        <div key={ageGroup} className="flex items-center">
-          <input
-            type="checkbox"
-            name={ageGroup}
-            className="w-4 h-4 rounded"
-            checked={target.includes(ageGroup)}
-            onChange={handleTargetChange}
-          />
-          <label htmlFor={ageGroup} className="mx-2 text-sm font-medium">
-            {ageGroup}
-          </label>
-        </div>
-      ))}
-    </li>
+    <>
+      <div className="items-center">
+        <p>年齢</p>
+      </div>
+      <li className="mb-6 flex justify-center mt-2">
+        {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
+          <div key={ageGroup} className="flex items-center">
+            <input
+              type="checkbox"
+              name={ageGroup}
+              className="w-4 h-4 rounded"
+              checked={target.includes(ageGroup)}
+              onChange={handleTargetChange}
+            />
+            <label htmlFor={ageGroup} className="mx-2 text-sm font-medium">
+              {ageGroup}
+            </label>
+          </div>
+        ))}
+      </li>
+    </>
   );
 };
 

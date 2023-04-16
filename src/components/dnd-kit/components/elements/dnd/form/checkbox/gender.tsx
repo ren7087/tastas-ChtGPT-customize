@@ -17,7 +17,10 @@ const Gender = (props: Prop) => {
   };
   return (
     <>
-      <li className="mb-6 flex">
+      <div className="items-center">
+        <p>性別</p>
+      </div>
+      <li className="mb-6 flex justify-center mt-2">
         <div className="flex items-center">
           <input
             type="radio"
