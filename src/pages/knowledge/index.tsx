@@ -21,6 +21,10 @@ const Knowledge = () => {
     setIsModalOpen(false);
   };
 
+  const removeBracketsAndQuotes = (tagContext: any) => {
+    return tagContext.replace(/\["|"\]/g, "");
+  };
+
   useEffect(() => {
     fetchKnowledgeData()
       .then((data) => setKnowledgeData(data))
@@ -60,22 +64,22 @@ const Knowledge = () => {
             <div className="px-6 pt-4 pb-2">
               {item.gender && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.gender}
+                  {removeBracketsAndQuotes(item.gender)}
                 </span>
               )}
               {item.target && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.target}
+                  {removeBracketsAndQuotes(item.target)}
                 </span>
               )}
               {item.brand && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.brand}
+                  {removeBracketsAndQuotes(item.brand)}
                 </span>
               )}
               {item.category && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {item.category}
+                  {removeBracketsAndQuotes(item.category)}
                 </span>
               )}
             </div>
