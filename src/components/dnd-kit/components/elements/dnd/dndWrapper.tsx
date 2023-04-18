@@ -53,7 +53,7 @@ const DndWrapper = () => {
   return (
     <>
       <DndContext {...dndContextProps}>
-        <div className="w-2/3 text-center bg-gray-100 p-10 rounded-lg">
+        <div className="md:w-2/3 w-full text-center bg-gray-100 p-10 rounded-lg">
           <DndFormArea dndArea={"inputForm"} />
           <button
             onClick={() => {
@@ -65,7 +65,7 @@ const DndWrapper = () => {
             Create
           </button>
         </div>
-        <div className="w-1/3">
+        <div className="md:w-1/3 hidden md:inline-block">
           <DndDroppableArea dndArea={"dndArea1"} />
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
