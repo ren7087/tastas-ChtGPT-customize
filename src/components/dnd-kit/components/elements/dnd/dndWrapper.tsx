@@ -31,7 +31,8 @@ const DndWrapper = () => {
     setIsModalOpen(false);
   };
 
-  const prompt = free + gender + target + brand + category;
+  const prompt =
+    free + "," + gender + "," + target + "," + brand + "," + category;
 
   const callAI = async () => {
     await axios({
@@ -49,10 +50,18 @@ const DndWrapper = () => {
     setIsModalOpen(true);
   };
 
+  const removeQuotes = (responseText: any) => {
+    return responseText.replace(/"/g, "");
+  };
+
   const pushKnowledge = async (dataChunk: any) => {
-    await supabase
-      .from("knowledge")
-      .insert({ gender, target, brand, category, responseText: dataChunk });
+    await supabase.from("knowledge").insert({
+      gender,
+      target,
+      brand,
+      category,
+      responseText: removeQuotes(dataChunk),
+    });
   };
 
   if (isLoading) {
@@ -79,7 +88,7 @@ const DndWrapper = () => {
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-2xl font-bold mb-4">結果</h2>
-          <p>{responseText}</p>
+          <p>{removeQuotes(responseText)}</p>
         </Modal>
       </DndContext>
     </>

@@ -22,7 +22,7 @@ const Knowledge = () => {
   };
 
   const removeBracketsAndQuotes = (tagContext: any) => {
-    return tagContext.replace(/\["|"\]/g, "");
+    return tagContext.replace(/\["|","|"\]/g, "");
   };
 
   useEffect(() => {
@@ -62,12 +62,12 @@ const Knowledge = () => {
               alt="Sunset in the mountains"
             />
             <div className="px-6 pt-4 pb-2">
-              {item.gender && (
+              {item.gender !== `[]` && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {removeBracketsAndQuotes(item.gender)}
                 </span>
               )}
-              {item.target && (
+              {item.target !== `[]` && (
                 <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                   {removeBracketsAndQuotes(item.target)}
                 </span>
