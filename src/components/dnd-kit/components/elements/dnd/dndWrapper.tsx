@@ -62,7 +62,7 @@ const DndWrapper = () => {
             }}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
           >
-            Submit
+            Create
           </button>
         </div>
         <div className="w-1/3">
