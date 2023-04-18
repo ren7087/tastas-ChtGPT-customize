@@ -37,11 +37,12 @@ const DndWrapper = () => {
       url: "/api/praise",
       method: "POST",
       data: { prompt },
+      timeout: 50000, // タイムアウトを50秒（50000ミリ秒）に設定
       onDownloadProgress: (progressEvent: any) => {
         const dataChunk = progressEvent.event.target.response;
         setResponseText(dataChunk);
       },
-    }).catch(() => {});
+    }).catch((e) => console.log(e));
     setIsLoading(false);
     setIsModalOpen(true);
   };
