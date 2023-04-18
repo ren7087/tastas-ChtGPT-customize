@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           name="keywords"
-          content="文章作成, フリマ, mercari, chatGPT, openAI"
+          content="文章作成, フリマ, mercari, chatGPT, openAI, SaleScripter"
         />
         <meta name="author" content="ren" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

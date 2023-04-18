@@ -15,10 +15,8 @@ export default async function handler(req: NextRequest) {
     "The output should be a markdown code snippet formatted in the following schema in Japanese";
 
   const outPutFormat = `
-	  {
-		  "本文": string,
-		  "おすすめポイント": string
-	  }
+		  本文: string,
+		  おすすめポイント: string
 	  `;
 
   const note = `NOTES:

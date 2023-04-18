@@ -14,6 +14,7 @@ import {
 import Modal from "../../modal";
 import { useState } from "react";
 import Loading from "../../loading";
+import supabase from "../../../../../../utils/supabase";
 
 const DndWrapper = () => {
   const { dndContextProps } = useMyDndContext();
@@ -41,10 +42,17 @@ const DndWrapper = () => {
       onDownloadProgress: (progressEvent: any) => {
         const dataChunk = progressEvent.event.target.response;
         setResponseText(dataChunk);
+        pushKnowledge(dataChunk);
       },
     }).catch((e) => console.log(e));
     setIsLoading(false);
     setIsModalOpen(true);
+  };
+
+  const pushKnowledge = async (dataChunk: any) => {
+    await supabase
+      .from("knowledge")
+      .insert({ gender, target, brand, category, responseText: dataChunk });
   };
 
   if (isLoading) {
