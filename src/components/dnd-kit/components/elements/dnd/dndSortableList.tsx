@@ -14,16 +14,16 @@ type Prop = {
 
 const ItemIcon = ({ selectedIcon }: { selectedIcon: string | undefined }) => {
   if (selectedIcon == "gender") {
-    return <RxPerson className="w-4 h-4 mr-2" />;
+    return <RxPerson className="w-4 h-4 mr-1" />;
   }
   if (selectedIcon == "target") {
-    return <TbTargetArrow className="w-4 h-4 mr-2" />;
+    return <TbTargetArrow className="w-4 h-4 mr-1" />;
   }
   if (selectedIcon == "category") {
-    return <BiCategoryAlt className="w-4 h-4 mr-2" />;
+    return <BiCategoryAlt className="w-4 h-4 mr-1" />;
   }
   if (selectedIcon == "brand") {
-    return <TbBrandDenodo className="w-4 h-4 mr-2" />;
+    return <TbBrandDenodo className="w-4 h-4 mr-1" />;
   }
   return null;
 };

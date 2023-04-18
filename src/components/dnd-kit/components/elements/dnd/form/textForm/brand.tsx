@@ -1,15 +1,7 @@
-import { useMySortable } from "@/components/dnd-kit/features/hooks/useMyDndSortable";
 import { useRecoilState } from "recoil";
-import { StateDndCard } from "../../../../../../../../state/recoil/stateDnd";
 import { stateBrand } from "../../../../../../../../state/recoil/stateForm";
 
-type Prop = {
-  card: StateDndCard;
-};
-
-const Brand = (props: Prop) => {
-  const { card } = props;
-
+const Brand = () => {
   const [brand, setBrand] = useRecoilState(stateBrand);
   const handleBrandChange = (event: any) => {
     setBrand(event.target.value);

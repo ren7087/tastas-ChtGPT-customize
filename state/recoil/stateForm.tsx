@@ -1,9 +1,9 @@
 import { atom } from "recoil";
 
-export const stateGender = atom<string>({
+export const stateGender = atom<string[]>({
   key: "stateGender",
 
-  default: "",
+  default: [],
 });
 
 export const stateTarget = atom<string[]>({

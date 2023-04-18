@@ -3,7 +3,7 @@ import DndDroppableArea from "./dndDroppableArea";
 import { useMyDndContext } from "../../../features/hooks/useMyDndContext";
 import DndFormArea from "./form/dndFormArea";
 import axios from "axios";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   stateBrand,
   stateCategory,
@@ -17,11 +17,11 @@ import Loading from "../../loading";
 
 const DndWrapper = () => {
   const { dndContextProps } = useMyDndContext();
-  const [free, setFree] = useRecoilState(stateFree);
-  const [gender, setGender] = useRecoilState(stateGender);
-  const [target, setTarget] = useRecoilState(stateTarget);
-  const [brand, setBrand] = useRecoilState(stateBrand);
-  const [category, setCategory] = useRecoilState(stateCategory);
+  const free = useRecoilValue(stateFree);
+  const gender = useRecoilValue(stateGender);
+  const target = useRecoilValue(stateTarget);
+  const brand = useRecoilValue(stateBrand);
+  const category = useRecoilValue(stateCategory);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [responseText, setResponseText] = useState("");
   const [isLoading, setIsLoading] = useState(false);

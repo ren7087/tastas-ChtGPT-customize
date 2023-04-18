@@ -32,13 +32,13 @@ const DndFormArea = (prop: Prop) => {
         <ul className="flex-col-center gap-[2rem] mt-[2rem]">
           {items[index].dndCard.map((card) =>
             card.name == "性別" ? (
-              <Gender key={card.uuid} card={card} />
+              <Gender key={card.uuid} />
             ) : card.name == "ターゲット層" ? (
-              <Target key={card.uuid} card={card} />
+              <Target key={card.uuid} />
             ) : card.name == "カテゴリー" ? (
-              <Category key={card.uuid} card={card} />
+              <Category key={card.uuid} />
             ) : card.name == "ブランド" ? (
-              <Brand key={card.uuid} card={card} />
+              <Brand key={card.uuid} />
             ) : card.name == "自由記載欄" ? (
               <DndFormList key={card.uuid} card={card} />
             ) : null

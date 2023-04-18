@@ -24,9 +24,6 @@ const DndFormList = React.memo((prop: Prop) => {
   const [category, setCategory] = useRecoilState(stateCategory);
   const [brand, setBrand] = useRecoilState(stateBrand);
 
-  const genderItem = ["男性", "女性", "その他"];
-  const targetItem = ["10代", "20代", "30代", "40代", "その他"];
-
   const handleGenderChange = (event: any) => {
     setGender(event.target.value);
   };
@@ -43,110 +40,43 @@ const DndFormList = React.memo((prop: Prop) => {
   if (type == "checkbox" && name == "性別") {
     return (
       <>
-        <li className="mb-6 flex" {...sortableProp}>
-          {genderItem.map((item) => {
-            return (
-              <div className="flex items-center" key={item}>
-                <input
-                  type="radio"
-                  name={"gender"}
-                  value={item}
-                  id={`gender-${item}`}
-                  className="w-4 h-4 rounded"
-                  checked={gender === item}
-                  onChange={handleGenderChange}
-                />
-                <label
-                  htmlFor={`gender-${item}`}
-                  className="mx-2 text-sm font-medium"
-                >
-                  {item}
-                </label>
-              </div>
-            );
-          })}
+        <li className="mb-6 flex justify-center mt-2">
+          {["男性", "女性"].map((genderGroup) => (
+            <div key={genderGroup} className="flex items-center">
+              <input
+                type="checkbox"
+                name={genderGroup}
+                className="w-4 h-4 rounded"
+                checked={gender.includes(genderGroup)}
+                onChange={handleGenderChange}
+              />
+              <label htmlFor={genderGroup} className="mx-2 text-sm font-medium">
+                {genderGroup}
+              </label>
+            </div>
+          ))}
         </li>
-        <p>選択したのは「{gender}」です。</p>
       </>
     );
   }
 
   if (type == "checkbox" && name == "ターゲット層") {
     return (
-      <li className="mb-6 flex" {...sortableProp}>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            name="10代"
-            className="w-4 h-4 rounded"
-            onChange={handleTargetChange}
-          />
-          <label
-            htmlFor="default-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
-            10代
-          </label>
-        </div>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            name="20代"
-            className="w-4 h-4 rounded"
-            onChange={handleTargetChange}
-          />
-          <label
-            htmlFor="checked-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
-            20代
-          </label>
-        </div>
-        <div className="flex items-center">
-          <input
-            checked
-            type="checkbox"
-            name="30代"
-            className="w-4 h-4 rounded"
-            onChange={handleTargetChange}
-          />
-          <label
-            htmlFor="checked-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
-            30代
-          </label>
-        </div>
-        <div className="flex items-center">
-          <input
-            checked
-            type="checkbox"
-            name="40代"
-            className="w-4 h-4 rounded"
-            onChange={handleTargetChange}
-          />
-          <label
-            htmlFor="checked-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
-            40代
-          </label>
-        </div>
-        <div className="flex items-center">
-          <input
-            checked
-            type="checkbox"
-            name="それ以外"
-            className="w-4 h-4 rounded"
-            onChange={handleTargetChange}
-          />
-          <label
-            htmlFor="checked-checkbox"
-            className="mx-2 text-sm font-medium"
-          >
-            それ以外
-          </label>
-        </div>
+      <li className="mb-6 flex justify-center mt-2">
+        {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
+          <div key={ageGroup} className="flex items-center">
+            <input
+              type="checkbox"
+              name={ageGroup}
+              className="w-4 h-4 rounded"
+              checked={target.includes(ageGroup)}
+              onChange={handleTargetChange}
+            />
+            <label htmlFor={ageGroup} className="mx-2 text-sm font-medium">
+              {ageGroup}
+            </label>
+          </div>
+        ))}
       </li>
     );
   }

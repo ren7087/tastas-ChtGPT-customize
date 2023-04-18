@@ -1,14 +1,7 @@
 import { useRecoilState } from "recoil";
-import { StateDndCard } from "../../../../../../../../state/recoil/stateDnd";
 import { stateCategory } from "../../../../../../../../state/recoil/stateForm";
 
-type Prop = {
-  card: StateDndCard;
-};
-
-const Category = (props: Prop) => {
-  const { card } = props;
-
+const Category = () => {
   const [category, setCategory] = useRecoilState(stateCategory);
   const handleCategoryChange = (event: any) => {
     setCategory(event.target.value);
