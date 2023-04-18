@@ -46,10 +46,10 @@ const Knowledge = () => {
   return (
     <>
       <HeaderComponent />
-      <div className="flex p-10 flex-wrap">
+      <div className="flex justify-center p-10 flex-wrap">
         {knowledgeData.map((item: Knowledge) => (
           <div
-            className="max-w-sm rounded-md overflow-hidden shadow-lg w-1/4 p-4 m-1 cursor-pointer"
+            className="max-w-sm rounded-md overflow-hidden shadow-lg w-full sm:w-1/2 md:w-1/4 p-4 m-1 cursor-pointer"
             key={item.id}
             onClick={() => {
               openModal();
