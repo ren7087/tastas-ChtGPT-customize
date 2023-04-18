@@ -1,9 +1,10 @@
+import React, { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import { stateCategory } from "../../../../../../../../state/recoil/stateForm";
 
-const Category = () => {
+const Category = React.memo(() => {
   const [category, setCategory] = useRecoilState(stateCategory);
-  const handleCategoryChange = (event: any) => {
+  const handleCategoryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value);
   };
   return (
@@ -22,6 +23,8 @@ const Category = () => {
       />
     </li>
   );
-};
+});
+
+Category.displayName = "Category";
 
 export default Category;

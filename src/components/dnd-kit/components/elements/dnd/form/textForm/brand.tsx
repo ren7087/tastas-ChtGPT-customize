@@ -1,9 +1,10 @@
+import React, { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import { stateBrand } from "../../../../../../../../state/recoil/stateForm";
 
-const Brand = () => {
+const Brand = React.memo(() => {
   const [brand, setBrand] = useRecoilState(stateBrand);
-  const handleBrandChange = (event: any) => {
+  const handleBrandChange = (event: ChangeEvent<HTMLInputElement>) => {
     setBrand(event.target.value);
   };
   return (
@@ -22,6 +23,8 @@ const Brand = () => {
       />
     </li>
   );
-};
+});
+
+Brand.displayName = "Brand";
 
 export default Brand;

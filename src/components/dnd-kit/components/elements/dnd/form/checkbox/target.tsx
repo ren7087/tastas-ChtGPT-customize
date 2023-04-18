@@ -1,10 +1,11 @@
+import React, { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import { stateTarget } from "../../../../../../../../state/recoil/stateForm";
 
-const Target = () => {
+const Target = React.memo(() => {
   const [target, setTarget] = useRecoilState(stateTarget);
 
-  const handleTargetChange = (event: any) => {
+  const handleTargetChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.name;
     const checked = event.target.checked;
 
@@ -40,6 +41,8 @@ const Target = () => {
       </li>
     </>
   );
-};
+});
+
+Target.displayName = "Target";
 
 export default Target;

@@ -7,7 +7,7 @@ import {
   stateGender,
   stateTarget,
 } from "../../../../../../../state/recoil/stateForm";
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 type Prop = {
   card: StateDndCard;
@@ -24,61 +24,83 @@ const DndFormList = React.memo((prop: Prop) => {
   const [category, setCategory] = useRecoilState(stateCategory);
   const [brand, setBrand] = useRecoilState(stateBrand);
 
-  const handleGenderChange = (event: any) => {
-    setGender(event.target.value);
+  const handleGenderChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.name;
+    const checked = event.target.checked;
+
+    setGender((prevGender) => {
+      if (checked) {
+        return [...prevGender, value];
+      } else {
+        return prevGender.filter((item) => item !== value);
+      }
+    });
   };
-  const handleTargetChange = (event: any) => {
-    setTarget(event.target.value);
+  const handleTargetChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.name;
+    const checked = event.target.checked;
+
+    setTarget((prevTarget) => {
+      if (checked) {
+        return [...prevTarget, value];
+      } else {
+        return prevTarget.filter((item) => item !== value);
+      }
+    });
   };
-  const handleCategoryChange = (event: any) => {
+  const handleCategoryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value);
   };
-  const handleBrandChange = (event: any) => {
+  const handleBrandChange = (event: ChangeEvent<HTMLInputElement>) => {
     setBrand(event.target.value);
   };
 
-  if (type == "checkbox" && name == "性別") {
-    return (
-      <>
+  if (type == "checkbox") {
+    if (name == "性別") {
+      return (
+        <>
+          <li className="mb-6 flex justify-center mt-2">
+            {["男性", "女性"].map((genderGroup) => (
+              <div key={genderGroup} className="flex items-center">
+                <input
+                  type="checkbox"
+                  name={genderGroup}
+                  className="w-4 h-4 rounded"
+                  checked={gender.includes(genderGroup)}
+                  onChange={handleGenderChange}
+                />
+                <label
+                  htmlFor={genderGroup}
+                  className="mx-2 text-sm font-medium"
+                >
+                  {genderGroup}
+                </label>
+              </div>
+            ))}
+          </li>
+        </>
+      );
+    }
+    if (name == "ターゲット層") {
+      return (
         <li className="mb-6 flex justify-center mt-2">
-          {["男性", "女性"].map((genderGroup) => (
-            <div key={genderGroup} className="flex items-center">
+          {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
+            <div key={ageGroup} className="flex items-center">
               <input
                 type="checkbox"
-                name={genderGroup}
+                name={ageGroup}
                 className="w-4 h-4 rounded"
-                checked={gender.includes(genderGroup)}
-                onChange={handleGenderChange}
+                checked={target.includes(ageGroup)}
+                onChange={handleTargetChange}
               />
-              <label htmlFor={genderGroup} className="mx-2 text-sm font-medium">
-                {genderGroup}
+              <label htmlFor={ageGroup} className="mx-2 text-sm font-medium">
+                {ageGroup}
               </label>
             </div>
           ))}
         </li>
-      </>
-    );
-  }
-
-  if (type == "checkbox" && name == "ターゲット層") {
-    return (
-      <li className="mb-6 flex justify-center mt-2">
-        {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
-          <div key={ageGroup} className="flex items-center">
-            <input
-              type="checkbox"
-              name={ageGroup}
-              className="w-4 h-4 rounded"
-              checked={target.includes(ageGroup)}
-              onChange={handleTargetChange}
-            />
-            <label htmlFor={ageGroup} className="mx-2 text-sm font-medium">
-              {ageGroup}
-            </label>
-          </div>
-        ))}
-      </li>
-    );
+      );
+    }
   }
 
   if (type == "input") {

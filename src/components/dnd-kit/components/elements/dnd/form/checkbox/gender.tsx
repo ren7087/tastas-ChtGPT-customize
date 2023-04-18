@@ -1,10 +1,11 @@
 import { useRecoilState } from "recoil";
 import { stateGender } from "../../../../../../../../state/recoil/stateForm";
+import React, { ChangeEvent } from "react";
 
-const Gender = () => {
+const Gender = React.memo(() => {
   const [gender, setGender] = useRecoilState(stateGender);
 
-  const handleGenderChange = (event: any) => {
+  const handleGenderChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.name;
     const checked = event.target.checked;
 
@@ -39,6 +40,8 @@ const Gender = () => {
       </li>
     </>
   );
-};
+});
+
+Gender.displayName = "Gender";
 
 export default Gender;
