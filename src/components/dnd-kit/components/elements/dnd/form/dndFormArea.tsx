@@ -3,7 +3,10 @@ import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 import { stateDnd } from "../../../../../../../state/recoil/stateDnd";
 import { useRecoilState, useRecoilValue } from "recoil";
 import DndFormList from "./dndFormList";
-import { stateFree } from "../../../../../../../state/recoil/stateForm";
+import {
+  stateFree,
+  stateWordCount,
+} from "../../../../../../../state/recoil/stateForm";
 import Gender from "./checkbox/gender";
 import Target from "./checkbox/target";
 import Category from "./textForm/category";
@@ -22,6 +25,10 @@ const DndFormArea = (prop: Prop) => {
   const [free, setFree] = useRecoilState(stateFree);
   const handleFreeChange = (event: any) => {
     setFree(event.target.value);
+  };
+  const [wordCount, setWordCount] = useRecoilState(stateWordCount);
+  const handleWordCountChange = (event: any) => {
+    setWordCount(event.target.value);
   };
 
   return (
@@ -55,6 +62,20 @@ const DndFormArea = (prop: Prop) => {
               className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
               value={free}
               onChange={handleFreeChange}
+            />
+          </li>
+          <li className="mb-6">
+            <label
+              htmlFor="large-input"
+              className="block mb-2 text-sm font-medium text-gray-900"
+            >
+              文字数
+            </label>
+            <input
+              type="text"
+              className="block w-1/3 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+              value={wordCount}
+              onChange={handleWordCountChange}
             />
           </li>
         </ul>

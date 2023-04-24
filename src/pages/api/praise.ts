@@ -22,7 +22,6 @@ export default async function handler(req: NextRequest) {
 	※年齢制限がございますので、ご購入前にご確認ください。`;
 
   const note = `NOTES:
-  * Please Create a passage within 300 characters.
   * Please make the text as appealing as possible for selling on a free market app.
   * as detailed as possible
   * Please do not include anything other than JSON in your answer.

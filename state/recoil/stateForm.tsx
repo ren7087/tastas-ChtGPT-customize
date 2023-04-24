@@ -29,3 +29,9 @@ export const stateFree = atom<string>({
 
   default: "",
 });
+
+export const stateWordCount = atom<number>({
+  key: "stateCount",
+
+  default: 300,
+});

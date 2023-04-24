@@ -10,6 +10,7 @@ import {
   stateFree,
   stateGender,
   stateTarget,
+  stateWordCount,
 } from "../../../../../../state/recoil/stateForm";
 import Modal from "../../modal";
 import { useState } from "react";
@@ -23,6 +24,7 @@ const DndWrapper = () => {
   const target = useRecoilValue(stateTarget);
   const brand = useRecoilValue(stateBrand);
   const category = useRecoilValue(stateCategory);
+  const wordCount = useRecoilValue(stateWordCount);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [responseText, setResponseText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +34,17 @@ const DndWrapper = () => {
   };
 
   const prompt =
-    free + "," + gender + "," + target + "," + brand + "," + category;
+    free +
+    "," +
+    gender +
+    "," +
+    target +
+    "," +
+    brand +
+    "," +
+    category +
+    "," +
+    `Please Create a passage within ${wordCount} characters.`;
 
   const callAI = async () => {
     await axios({
