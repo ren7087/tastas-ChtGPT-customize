@@ -1,7 +1,10 @@
 import Loading from "@/components/dnd-kit/components/loading";
 import Modal from "@/components/dnd-kit/components/modal";
+import SearchForm from "@/components/dnd-kit/components/searchForm";
 import HeaderComponent from "@/components/header";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { stateKnowledge } from "../../../state/recoil/stateKnowledge";
 import { Knowledge } from "../../../types/knowledge";
 
 const Knowledge = () => {
@@ -12,7 +15,7 @@ const Knowledge = () => {
     setIsLoading(false);
     return data;
   };
-  const [knowledgeData, setKnowledgeData] = useState<Knowledge[]>([]);
+  const [knowledgeData, setKnowledgeData] = useRecoilState(stateKnowledge);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,6 +50,7 @@ const Knowledge = () => {
   return (
     <>
       <HeaderComponent />
+      <SearchForm />
       <div className="flex justify-center p-10 flex-wrap">
         {knowledgeData.map((item: Knowledge) => (
           <div
