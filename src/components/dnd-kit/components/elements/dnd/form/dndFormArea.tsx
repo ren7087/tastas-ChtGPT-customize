@@ -71,12 +71,14 @@ const DndFormArea = (prop: Prop) => {
             >
               文字数
             </label>
-            <input
-              type="text"
-              className="block w-1/3 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-              value={wordCount}
-              onChange={handleWordCountChange}
-            />
+            <div className="flex justify-center">
+              <input
+                type="text"
+                className="block w-1/3 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                value={wordCount}
+                onChange={handleWordCountChange}
+              />
+            </div>
           </li>
         </ul>
       </section>
