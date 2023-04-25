@@ -25,9 +25,10 @@ const DndWrapper = () => {
   const brand = useRecoilValue(stateBrand);
   const category = useRecoilValue(stateCategory);
   const wordCount = useRecoilValue(stateWordCount);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [responseText, setResponseText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [wordCountError, setWordCountError] = useState<boolean>(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -47,6 +48,15 @@ const DndWrapper = () => {
     `Please Create a passage within ${wordCount} characters.`;
 
   const callAI = async () => {
+    if (wordCount >= 600) {
+      //600文字以上を選択した時は、弾く
+      setWordCountError(true);
+      setIsLoading(false);
+      setIsModalOpen(true);
+      return;
+    } else {
+      setWordCountError(false);
+    }
     await axios({
       url: "/api/praise",
       method: "POST",
@@ -100,7 +110,11 @@ const DndWrapper = () => {
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-2xl font-bold mb-4">結果</h2>
-          <p>{removeQuotes(responseText)}</p>
+          <p>
+            {wordCountError
+              ? "文字数は600以下に設定してください"
+              : removeQuotes(responseText)}
+          </p>
         </Modal>
       </DndContext>
     </>
