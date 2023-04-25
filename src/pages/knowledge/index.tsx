@@ -44,25 +44,13 @@ const Knowledge = () => {
     );
   }
 
-  if (isModalOpen) {
-    return (
-      <>
-        <HeaderComponent />
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <h2 className="text-2xl font-bold mb-4">説明文</h2>
-          <p>{modalContent}</p>
-        </Modal>
-      </>
-    );
-  }
-
   return (
     <>
       <HeaderComponent />
       <div className="flex justify-center p-10 flex-wrap">
         {knowledgeData.map((item: Knowledge) => (
           <div
-            className="max-w-sm rounded-xl overflow-hidden shadow-lg w-full sm:w-1/2 md:w-1/4 p-4 m-1 cursor-pointer"
+            className="max-w-sm rounded-xl overflow-hidden shadow-lg w-full sm:w-1/2 md:w-1/4 p-4 m-1 cursor-pointer hover:bg-blue-300"
             key={item.id}
             onClick={() => {
               openModal();
@@ -97,6 +85,10 @@ const Knowledge = () => {
           </div>
         ))}
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2 className="text-2xl font-bold mb-4">説明文</h2>
+        <p>{modalContent}</p>
+      </Modal>
     </>
   );
 };
