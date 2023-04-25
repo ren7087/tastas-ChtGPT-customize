@@ -65,9 +65,10 @@ const DndWrapper = () => {
       onDownloadProgress: (progressEvent: any) => {
         const dataChunk = progressEvent.event.target.response;
         setResponseText(dataChunk);
-        pushKnowledge(dataChunk);
       },
-    }).catch((e) => console.log(e));
+    })
+      .then((result) => pushKnowledge(result.data))
+      .catch((e) => console.log(e));
     setIsLoading(false);
     setIsModalOpen(true);
   };
@@ -76,7 +77,7 @@ const DndWrapper = () => {
     return responseText.replace(/"/g, "");
   };
 
-  const pushKnowledge = async (dataChunk: any) => {
+  const pushKnowledge = async (dataChunk: string) => {
     await supabase.from("knowledge").insert({
       gender,
       target,
@@ -87,7 +88,7 @@ const DndWrapper = () => {
   };
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading text={"30秒ほどお待ちください"} />;
   }
 
   return (

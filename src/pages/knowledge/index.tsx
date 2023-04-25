@@ -1,3 +1,4 @@
+import Loading from "@/components/dnd-kit/components/loading";
 import Modal from "@/components/dnd-kit/components/modal";
 import HeaderComponent from "@/components/header";
 import { useEffect, useState } from "react";
@@ -5,13 +6,16 @@ import { Knowledge } from "../../../types/knowledge";
 
 const Knowledge = () => {
   const fetchKnowledgeData = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/knowledge");
     const { data } = await response.json();
+    setIsLoading(false);
     return data;
   };
   const [knowledgeData, setKnowledgeData] = useState<Knowledge[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalContent, setModalContent] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -30,6 +34,15 @@ const Knowledge = () => {
       .then((data) => setKnowledgeData(data))
       .catch((err) => console.error(err));
   }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <HeaderComponent />
+        <Loading />
+      </>
+    );
+  }
 
   if (isModalOpen) {
     return (
