@@ -31,7 +31,7 @@ const Knowledge = () => {
 
   useEffect(() => {
     fetchKnowledgeData()
-      .then((data) => setKnowledgeData(data))
+      .then((data) => setKnowledgeData(data.reverse()))
       .catch((err) => console.error(err));
   }, []);
 
