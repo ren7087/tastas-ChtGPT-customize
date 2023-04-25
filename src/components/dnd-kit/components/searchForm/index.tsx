@@ -69,6 +69,7 @@ const SearchForm = () => {
     }
 
     if (result) {
+      //@ts-ignore
       setKnowledgeData(result);
     }
   };
