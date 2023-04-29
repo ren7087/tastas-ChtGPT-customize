@@ -75,7 +75,7 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="justify-center px-60 pt-10">
+    <div className="justify-center px-60 pt-10 hidden md:block">
       <button
         className="w-full bg-gray-800 text-white font-bold py-2 px-4 rounded-md"
         onClick={toggleAccordion}
