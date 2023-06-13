@@ -1,12 +1,11 @@
 import React, { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 import { stateTarget } from "../../../../../../../../state/recoil/stateForm";
-import { useMedia } from "use-media";
-import Image from "next/image";
+import { useWindowSize } from "@/components/dnd-kit/features/hooks/useWindowSize";
 
 const Target = React.memo(() => {
   const [target, setTarget] = useRecoilState(stateTarget);
-  const isPCSite = useMedia({ minWidth: "777px" });
+  const [width] = useWindowSize();
 
   const handleTargetChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.name;
@@ -29,7 +28,7 @@ const Target = React.memo(() => {
       </div>
       <ul
         className={`mb-6 mt-2 ${
-          isPCSite ? "flex" : "flex flex-col items-center"
+          width > 777 ? "flex" : "flex flex-col items-center"
         } justify-center`}
       >
         {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (

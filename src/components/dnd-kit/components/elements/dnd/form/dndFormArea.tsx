@@ -11,7 +11,7 @@ import Gender from "./checkbox/gender";
 import Target from "./checkbox/target";
 import Category from "./textForm/category";
 import Brand from "./textForm/brand";
-import useMedia from "use-media";
+import { useWindowSize } from "../../../../features/hooks/useWindowSize";
 
 type Prop = {
   dndArea: string;
@@ -19,7 +19,7 @@ type Prop = {
 
 const DndFormArea = (prop: Prop) => {
   const { dndArea } = prop;
-  const isMobileSite = useMedia({ minWidth: "777px" });
+  const [width] = useWindowSize();
   const items = useRecoilValue(stateDnd);
   const index = items.findIndex((item) => item.dndArea === dndArea);
   const cardIds = items[index].dndCard.map((card) => card.uuid);
@@ -39,7 +39,7 @@ const DndFormArea = (prop: Prop) => {
         <h2 className="text-3xl font-bold text-center">{dndArea}</h2>
 
         <ul className="flex-col-center gap-[2rem] mt-[2rem]">
-          {isMobileSite ? (
+          {width > 777 ? (
             items[index].dndCard.map((card) =>
               card.name == "性別" ? (
                 <Gender key={card.uuid} />

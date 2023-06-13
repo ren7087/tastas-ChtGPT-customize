@@ -16,11 +16,9 @@ import Modal from "../../modal";
 import { useState } from "react";
 import Loading from "../../loading";
 import supabase from "../../../../../../utils/supabase";
-import { useMedia } from "use-media";
 
 const DndWrapper = () => {
   const { dndContextProps } = useMyDndContext();
-  const isMobileSite = useMedia({ maxWidth: "777px" });
   const free = useRecoilValue(stateFree);
   const gender = useRecoilValue(stateGender);
   const target = useRecoilValue(stateTarget);
@@ -104,9 +102,7 @@ const DndWrapper = () => {
               setIsLoading(true);
               callAI();
             }}
-            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded ${
-              isMobileSite ? "w-full" : ""
-            }`}
+            className="sm:w-2/5 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
           >
             Create
           </button>
@@ -115,7 +111,9 @@ const DndWrapper = () => {
           <DndDroppableArea dndArea={"dndArea1"} />
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <h2 className="text-2xl font-bold mb-4">{wordCountError ? "エラー" : "結果"}</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            {wordCountError ? "エラー" : "結果"}
+          </h2>
           <p>
             {wordCountError
               ? "文字数は600以下に設定してください"
