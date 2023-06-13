@@ -20,7 +20,7 @@ const Gender = React.memo(() => {
   return (
     <>
       <div className="items-center">
-        <p>性別</p>
+        <p className="font-bold">ターゲット性別</p>
       </div>
       <li className="mb-6 flex justify-center mt-2">
         {["男性", "女性"].map((genderGroup) => (

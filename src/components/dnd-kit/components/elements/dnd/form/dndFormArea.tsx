@@ -11,6 +11,7 @@ import Gender from "./checkbox/gender";
 import Target from "./checkbox/target";
 import Category from "./textForm/category";
 import Brand from "./textForm/brand";
+import useMedia from "use-media";
 
 type Prop = {
   dndArea: string;
@@ -18,6 +19,7 @@ type Prop = {
 
 const DndFormArea = (prop: Prop) => {
   const { dndArea } = prop;
+  const isMobileSite = useMedia({ minWidth: "777px" });
   const items = useRecoilValue(stateDnd);
   const index = items.findIndex((item) => item.dndArea === dndArea);
   const cardIds = items[index].dndCard.map((card) => card.uuid);
@@ -34,26 +36,35 @@ const DndFormArea = (prop: Prop) => {
   return (
     <SortableContext items={cardIds} strategy={rectSortingStrategy}>
       <section className="w-25/100 mt-30px">
-        <h2 className="text-2xl font-bold text-center">{dndArea}</h2>
+        <h2 className="text-3xl font-bold text-center">{dndArea}</h2>
 
         <ul className="flex-col-center gap-[2rem] mt-[2rem]">
-          {items[index].dndCard.map((card) =>
-            card.name == "性別" ? (
-              <Gender key={card.uuid} />
-            ) : card.name == "ターゲット層" ? (
-              <Target key={card.uuid} />
-            ) : card.name == "カテゴリー" ? (
-              <Category key={card.uuid} />
-            ) : card.name == "ブランド" ? (
-              <Brand key={card.uuid} />
-            ) : card.name == "自由記載欄" ? (
-              <DndFormList key={card.uuid} card={card} />
-            ) : null
+          {isMobileSite ? (
+            items[index].dndCard.map((card) =>
+              card.name == "性別" ? (
+                <Gender key={card.uuid} />
+              ) : card.name == "ターゲット層" ? (
+                <Target key={card.uuid} />
+              ) : card.name == "カテゴリー" ? (
+                <Category key={card.uuid} />
+              ) : card.name == "ブランド" ? (
+                <Brand key={card.uuid} />
+              ) : card.name == "自由記載欄" ? (
+                <DndFormList key={card.uuid} card={card} />
+              ) : null
+            )
+          ) : (
+            <>
+              <Gender />
+              <Target />
+              <Category />
+              <Brand />
+            </>
           )}
           <li className="mb-6">
             <label
               htmlFor="large-input"
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block mb-2 font-bold text-gray-900"
             >
               自由記載欄
             </label>
@@ -67,7 +78,7 @@ const DndFormArea = (prop: Prop) => {
           <li className="mb-6">
             <label
               htmlFor="large-input"
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block mb-2 font-bold text-gray-900"
             >
               文字数
             </label>

@@ -11,7 +11,7 @@ const Category = React.memo(() => {
     <li className="mb-6">
       <label
         htmlFor="large-input"
-        className="block mb-2 text-sm font-medium text-gray-900"
+        className="block mb-2 font-bold text-gray-900"
       >
         カテゴリー
       </label>
