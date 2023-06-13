@@ -67,7 +67,7 @@ const DndWrapper = () => {
         setResponseText(dataChunk);
       },
     })
-      .then((result) => pushKnowledge(result.data))
+      // .then((result) => pushKnowledge(result.data))
       .catch((e) => console.log(e));
     setIsLoading(false);
     setIsModalOpen(true);
