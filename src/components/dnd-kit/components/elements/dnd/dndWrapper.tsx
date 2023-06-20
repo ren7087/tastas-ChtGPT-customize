@@ -109,9 +109,9 @@ const DndWrapper = () => {
         <div className="md:w-1/3 hidden md:inline-block">
           <DndDroppableArea dndArea={"dndArea1"} />
         </div>
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <Modal isOpen={isModalOpen} onClose={closeModal} text={responseText}>
           <h2 className="text-2xl font-bold mb-4">
-            {wordCountError ? "エラー" : "結果"}
+            {wordCountError || freeWordError ? "エラー" : "結果"}
           </h2>
           <p>
             {wordCountError
