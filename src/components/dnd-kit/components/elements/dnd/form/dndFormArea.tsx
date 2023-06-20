@@ -66,7 +66,7 @@ const DndFormArea = (prop: Prop) => {
                 <Category key={card.uuid} />
               ) : card.name == "ブランド" ? (
                 <Brand key={card.uuid} />
-              ) : card.name == "商品がわかる情報" ? (
+              ) : card.name == "商品が分かる情報" ? (
                 <DndFormList key={card.uuid} card={card} />
               ) : null
             )
