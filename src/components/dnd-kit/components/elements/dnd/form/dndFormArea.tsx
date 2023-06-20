@@ -39,6 +39,23 @@ const DndFormArea = (prop: Prop) => {
         <h2 className="text-3xl font-bold text-center">{dndArea}</h2>
 
         <ul className="flex-col-center gap-[2rem] mt-[2rem]">
+          <li className="mb-6">
+            <label
+              htmlFor="large-input"
+              className="block mb-2 font-bold text-gray-900"
+            >
+              商品が分かる情報
+              <text className="text-white bg-red-500 font-normal text-sm ml-2 p-0.5 rounded-md">
+                必須
+              </text>
+            </label>
+            <textarea
+              rows={3}
+              className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+              value={free}
+              onChange={handleFreeChange}
+            />
+          </li>
           {width > 777 ? (
             items[index].dndCard.map((card) =>
               card.name == "性別" ? (
@@ -49,7 +66,7 @@ const DndFormArea = (prop: Prop) => {
                 <Category key={card.uuid} />
               ) : card.name == "ブランド" ? (
                 <Brand key={card.uuid} />
-              ) : card.name == "自由記載欄" ? (
+              ) : card.name == "商品がわかる情報" ? (
                 <DndFormList key={card.uuid} card={card} />
               ) : null
             )
@@ -61,20 +78,7 @@ const DndFormArea = (prop: Prop) => {
               <Brand />
             </>
           )}
-          <li className="mb-6">
-            <label
-              htmlFor="large-input"
-              className="block mb-2 font-bold text-gray-900"
-            >
-              自由記載欄
-            </label>
-            <input
-              type="text"
-              className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
-              value={free}
-              onChange={handleFreeChange}
-            />
-          </li>
+
           <li className="mb-6">
             <label
               htmlFor="large-input"

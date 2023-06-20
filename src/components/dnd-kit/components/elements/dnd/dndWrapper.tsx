@@ -29,26 +29,25 @@ const DndWrapper = () => {
   const [responseText, setResponseText] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [wordCountError, setWordCountError] = useState<boolean>(false);
+  const [freeWordError, setFreeWordError] = useState<boolean>(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const prompt =
-    free +
-    "," +
-    gender +
-    "," +
-    target +
-    "," +
-    brand +
-    "," +
-    category +
-    "," +
-    `Please Create a passage within ${wordCount} characters.`;
+    free + "," + gender + "," + target + "," + brand + "," + category;
 
   const callAI = async () => {
-    if (wordCount >= 600) {
+    if (free.length <= 0) {
+      setFreeWordError(true);
+      setIsLoading(false);
+      setIsModalOpen(true);
+      return;
+    } else {
+      setFreeWordError(false);
+    }
+    if (wordCount > 600) {
       //600文字以上を選択した時は、弾く
       setWordCountError(true);
       setIsLoading(false);
@@ -60,7 +59,7 @@ const DndWrapper = () => {
     await axios({
       url: "/api/praise",
       method: "POST",
-      data: { prompt },
+      data: { prompt, wordCount },
       timeout: 50000, // タイムアウトを50秒（50000ミリ秒）に設定
       onDownloadProgress: (progressEvent: any) => {
         const dataChunk = progressEvent.event.target.response;
@@ -89,13 +88,13 @@ const DndWrapper = () => {
   };
 
   if (isLoading) {
-    return <Loading text={"30秒ほどお待ちください"} />;
+    return <Loading text={"20秒ほどお待ちください"} />;
   }
 
   return (
     <>
       <DndContext {...dndContextProps}>
-        <div className="md:w-2/3 w-full text-center bg-gray-100 p-10 rounded-lg">
+        <div className="w-full text-center bg-gray-100 p-7 rounded-lg">
           <DndFormArea dndArea={"inputForm"} />
           <button
             onClick={() => {
@@ -116,7 +115,12 @@ const DndWrapper = () => {
           </h2>
           <p>
             {wordCountError
-              ? "文字数は600以下に設定してください"
+              ? "・文字数は600以下に設定してください"
+              : removeQuotes(responseText)}
+          </p>
+          <p>
+            {freeWordError
+              ? "・商品が分かる情報は必須項目です"
               : removeQuotes(responseText)}
           </p>
         </Modal>

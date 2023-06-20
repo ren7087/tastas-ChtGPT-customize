@@ -84,7 +84,7 @@ const DndFormList = React.memo((prop: Prop) => {
     if (name == "ターゲット層") {
       return (
         <li className="mb-6 flex justify-center mt-2">
-          {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
+          {["10代", "20代", "30代", "40代", "50代以降"].map((ageGroup) => (
             <div key={ageGroup} className="flex items-center">
               <input
                 type="checkbox"

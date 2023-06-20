@@ -31,7 +31,7 @@ const Target = React.memo(() => {
           width > 777 ? "flex" : "flex flex-col items-center"
         } justify-center`}
       >
-        {["10代", "20代", "30代", "40代", "それ以外"].map((ageGroup) => (
+        {["10代", "20代", "30代", "40代", "50代以降"].map((ageGroup) => (
           <li key={ageGroup} className="flex items-center mb-2">
             <input
               type="checkbox"

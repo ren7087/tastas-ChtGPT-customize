@@ -5,7 +5,7 @@ const Article = () => {
   return (
     <>
       <Callout />
-      <div className="flex mx-10 my-10">
+      <div className="flex sm:mx-10 mx-2 my-10">
         <DndWrapper />
       </div>
     </>

@@ -6,8 +6,9 @@ export const config = {
 };
 
 export default async function handler(req: NextRequest) {
-  const { prompt } = (await req.json()) as {
+  const { prompt, wordCount } = (await req.json()) as {
     prompt?: string;
+    wordCount?: number;
   };
 
   const whoAreYou = "You are an excellent Writer.";
@@ -25,6 +26,7 @@ export default async function handler(req: NextRequest) {
   * Please make the text as appealing as possible for selling on a free market app.
   * as detailed as possible
   * Please do not include anything other than JSON in your answer.
+	* Please Create a passage within ${wordCount} characters.
   * Response must be Japanese`;
 
   const payload = {

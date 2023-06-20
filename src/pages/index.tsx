@@ -6,7 +6,7 @@ export default function Index() {
     <>
       <HeaderComponent />
       <div className="flex">
-        <div className="flex-1 w-64 m-1 p-1">
+        <div className="flex-1 w-full m-1 p-1">
           <Article />
         </div>
       </div>
